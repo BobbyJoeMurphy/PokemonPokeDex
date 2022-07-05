@@ -49,15 +49,25 @@ class PokemonPage : Fragment() {
 
 
 
+                    binding.button.setOnClickListener{
+                        Glide.with(binding.imageview)
+                            .load(responseBody.sprites.front_shiny)
+                            .centerCrop()
+                            .into(binding.imageview)
+                    }
+
                 }
+
                 override fun onFailure(call: Call<PokemonData>, t: Throwable) {
                     Log.d("MainActivity", "onFailure" + t.message)
                 }
             })
-        binding.textview.text = Pokemon.name
+
+
 
         return binding.root
     }
+
 
 
     }
