@@ -1,19 +1,29 @@
 package com.example.mypokemonpokedex
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.Data.Pokemon
 import com.example.Data.Result
+import com.example.mypokemonpokedex.Data.PokemonData
+import com.example.mypokemonpokedex.Retrofitbuilder.getRetrofitBuilder
 import com.example.mypokemonpokedex.databinding.FragmentPokemonPageBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class PokemonPage : Fragment() {
     private lateinit var binding: FragmentPokemonPageBinding
+
 
 
     override fun onCreateView(
@@ -24,15 +34,34 @@ class PokemonPage : Fragment() {
         binding = FragmentPokemonPageBinding.inflate(inflater, container, false)
         var Pokemon = arguments?.getSerializable("Pokemon") as Result
 
-        binding.textView.text = Pokemon.url
+            val retrofitData = getRetrofitBuilder().getPokemonDetails(Pokemon.name)
+            retrofitData.enqueue(object : Callback<PokemonData> {
+                override fun onResponse(
+                    call: Call<PokemonData>,
+                    response: Response<PokemonData>
+                ) {
+                    val responseBody = response.body()!!
+                    binding.textview.text = responseBody.name
+                    Glide.with(binding.imageview)
+                        .load(responseBody.sprites.front_default)
+                        .centerCrop()
+                        .into(binding.imageview)
 
 
 
-
-
-
-
+                }
+                override fun onFailure(call: Call<PokemonData>, t: Throwable) {
+                    Log.d("MainActivity", "onFailure" + t.message)
+                }
+            })
+        binding.textview.text = Pokemon.name
 
         return binding.root
     }
-}
+
+
+    }
+
+
+
+
