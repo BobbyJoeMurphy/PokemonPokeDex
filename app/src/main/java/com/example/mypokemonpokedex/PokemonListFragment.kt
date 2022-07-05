@@ -6,10 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.Data.Pokemon
 import com.example.mypokemonpokedex.Data.ApiInterface
+import com.example.mypokemonpokedex.Retrofitbuilder.getRetrofitBuilder
 import com.example.mypokemonpokedex.databinding.FragmentPokemonListBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class PokemonListFragment : Fragment() {
     private lateinit var binding: FragmentPokemonListBinding
-    val urlForPokemon = "https://pokeapi.co/api/v2/"
+
 
 
 
@@ -35,14 +38,7 @@ class PokemonListFragment : Fragment() {
 
         return binding.root
     }
-    private fun getRetrofitBuilder(): ApiInterface {
-        return Retrofit.Builder()
 
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(urlForPokemon)
-            .build()
-            .create(ApiInterface::class.java)
-    }
 
 
     private fun getPokemonList() {
@@ -53,7 +49,12 @@ class PokemonListFragment : Fragment() {
                 response: Response<Pokemon>
             ) {
                 val responseBody = response.body()!!
-               binding.listRecycler.adapter = PokemonAdapter(responseBody.results) {
+               binding.listRecycler.adapter = PokemonAdapter(responseBody.results) {clickedItem->
+                   findNavController().navigate(
+                       R.id.action_pokemonListFragment_to_pokemonPage,
+                       bundleOf("Pokemon" to clickedItem)
+               )
+
                 }
                 (binding.listRecycler.layoutManager as GridLayoutManager).spanCount = 3
 
