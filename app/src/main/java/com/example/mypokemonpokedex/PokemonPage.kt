@@ -6,12 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.Data.Pokemon
 import com.example.Data.Result
 import com.example.mypokemonpokedex.Data.PokemonData
 import com.example.mypokemonpokedex.Retrofitbuilder.getRetrofitBuilder
@@ -32,9 +27,9 @@ class PokemonPage : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentPokemonPageBinding.inflate(inflater, container, false)
-        var Pokemon = arguments?.getSerializable("Pokemon") as Result
+        var pokemonResult = arguments?.getSerializable("Pokemon") as Result
 
-            val retrofitData = getRetrofitBuilder().getPokemonDetails(Pokemon.name)
+            val retrofitData = getRetrofitBuilder().getPokemonDetails(pokemonResult.name)
             retrofitData.enqueue(object : Callback<PokemonData> {
                 override fun onResponse(
                     call: Call<PokemonData>,
@@ -46,6 +41,8 @@ class PokemonPage : Fragment() {
                         .load(responseBody.sprites.front_default)
                         .centerCrop()
                         .into(binding.imageViewPokemon)
+
+                    binding.textview.text = responseBody.abilities[0].ability.name
 
 
 

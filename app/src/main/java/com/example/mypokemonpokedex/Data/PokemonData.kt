@@ -5,5 +5,7 @@ import java.io.Serializable
 data class PokemonData(
     val id: Int,
     val name :String,
-    val sprites: Sprites
+    val sprites: Sprites,
+    val abilities: List<PokemonAbility>
+
 ): Serializable
