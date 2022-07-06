@@ -47,7 +47,7 @@ class PokemonListFragment : Fragment() {
 
     }
 
-
+    //making a call to retrofit to fit the dataclass to the data, taking results to my adapter
     private fun getPokemonList() {
         val retrofitData = getRetrofitBuilder().getPokemon()
         retrofitData.enqueue(object : Callback<Pokemon> {
@@ -58,6 +58,7 @@ class PokemonListFragment : Fragment() {
                 val responseBody = response.body()!!
                 val results = responseBody.results
                 setPokemonIds(results)
+                //clicked item is a pointer to the item clicked in the list
                 binding.listRecycler.adapter = PokemonAdapter(results) { clickedItem ->
                     findNavController().navigate(
                         R.id.action_pokemonListFragment_to_pokemonPage,
@@ -65,18 +66,19 @@ class PokemonListFragment : Fragment() {
                     )
 
                 }
+                //setting the binding adapter to a gridlayout.
                 (binding.listRecycler.layoutManager as GridLayoutManager).spanCount = 3
 
 
             }
-
+            //logs failure
             override fun onFailure(call: Call<Pokemon>, t: Throwable) {
                 Log.d("MainActivity", "onFailure" + t.message)
             }
         })
 
     }
-
+//debugging a bug when searching mapping the correct id to the result, before this when searching images where
     private fun setPokemonIds(list: List<Result>) {
         list.forEachIndexed { index, result -> result.id = index + 1 }
     }
