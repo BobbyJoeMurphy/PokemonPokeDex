@@ -1,6 +1,6 @@
 package com.example.mypokemonpokedex
 
-import PokemonAdapter
+import com.example.mypokemonpokedex.Adapter.PokemonAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,14 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.Data.Pokemon
-import com.example.mypokemonpokedex.Data.ApiInterface
 import com.example.mypokemonpokedex.Retrofitbuilder.getRetrofitBuilder
 import com.example.mypokemonpokedex.databinding.FragmentPokemonListBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class PokemonListFragment : Fragment() {

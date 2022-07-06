@@ -1,44 +1,30 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:background="@drawable/pokedex"
+    android:orientation="vertical"
+    android:padding="24dp">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:layout_width="381dp"
-        android:layout_height="685dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/pokedex"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:layout_width="292dp"
-        android:layout_height="273dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="52dp"
+    <FrameLayout
+        android:layout_width="@dimen/image_container"
+        android:layout_height="@dimen/image_container"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/box"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageview"
-        android:background="@drawable/box"
-        android:layout_width="261dp"
-        android:layout_height="213dp"
-        android:layout_alignParentStart="true"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="52dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        >
+
+        <ImageView
+
+            android:id="@+id/imageViewPokemon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/textview"
@@ -48,29 +34,25 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="254dp"
         android:gravity="center|bottom"
-        android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="45dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="35sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="74dp"
-        android:layout_height="76dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="324dp"
+        android:layout_width="@dimen/circle_button"
+        android:layout_height="@dimen/circle_button"
+        android:text="@string/push"
         android:background="@drawable/button"
-        android:backgroundTint="@color/white"
-        android:text="push me"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:backgroundTint="@color/white" />
+    <FrameLayout
+        android:layout_width="@dimen/image_container"
+        android:layout_height="@dimen/image_container"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/box">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

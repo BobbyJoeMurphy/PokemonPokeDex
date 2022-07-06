@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="circle_button">75dp</dimen>
+    <dimen name="image_container">225dp</dimen>
+
+
+
+
+</resources>

@@ -1,7 +1,10 @@
+package com.example.mypokemonpokedex.Adapter
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,11 +13,14 @@ import com.bumptech.glide.Glide
 
 import com.example.Data.Result
 import com.example.mypokemonpokedex.R
-import java.util.*
 
 
-class PokemonAdapter(val list: List<Result>, val callback: (Result) -> Unit) :
-    RecyclerView.Adapter<PokemonAdapter.MyViewHolder>(){
+class PokemonAdapter(private val list: List<Result>, val callback: (Result) -> Unit) :
+    RecyclerView.Adapter<PokemonAdapter.MyViewHolder>(),Filterable{
+
+    private var allItems= listOf<Result>()
+    
+
 
 
 
@@ -23,7 +29,7 @@ class PokemonAdapter(val list: List<Result>, val callback: (Result) -> Unit) :
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PokemonAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = list[position]
         holder.itemView.setOnClickListener {
             callback(currentItem)
@@ -43,20 +49,18 @@ class PokemonAdapter(val list: List<Result>, val callback: (Result) -> Unit) :
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textView: TextView
-        val imagePokemons: ImageView
+        val textView: TextView = itemView.findViewById(R.id.textView3)
+        val imagePokemons: ImageView = itemView.findViewById(R.id.imagePokemons)
 
-        init {
-            textView = itemView.findViewById(R.id.textView3)
-            imagePokemons = itemView.findViewById(R.id.imagePokemons)
-
-        }
     }
 
     companion object {
         const val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
     }
 
+    override fun getFilter(): Filter {
+        TODO("Not yet implemented")
+    }
 
 
 }

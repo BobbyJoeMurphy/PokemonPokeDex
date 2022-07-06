@@ -42,18 +42,18 @@ class PokemonPage : Fragment() {
                 ) {
                     val responseBody = response.body()!!
                     binding.textview.text = responseBody.name
-                    Glide.with(binding.imageview)
+                    Glide.with(binding.imageViewPokemon)
                         .load(responseBody.sprites.front_default)
                         .centerCrop()
-                        .into(binding.imageview)
+                        .into(binding.imageViewPokemon)
 
 
 
                     binding.button.setOnClickListener{
-                        Glide.with(binding.imageview)
+                        Glide.with(binding.imageViewPokemon)
                             .load(responseBody.sprites.front_shiny)
                             .centerCrop()
-                            .into(binding.imageview)
+                            .into(binding.imageViewPokemon)
                     }
 
                 }
