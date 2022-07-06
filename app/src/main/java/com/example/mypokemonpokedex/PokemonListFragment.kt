@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.Data.Pokemon
+import com.example.Data.Result
 import com.example.mypokemonpokedex.Retrofitbuilder.getRetrofitBuilder
 import com.example.mypokemonpokedex.databinding.FragmentPokemonListBinding
 import retrofit2.Call
@@ -32,8 +34,15 @@ class PokemonListFragment : Fragment() {
         getPokemonList()
         getRetrofitBuilder();
 
-
+        setupEditText()
         return binding.root
+    }
+    private fun setupEditText(){
+        binding.editTextSearch.addTextChangedListener {
+            (binding.listRecycler.adapter as? PokemonAdapter)?.filter?.filter(it)
+
+        }
+
     }
 
 
@@ -46,7 +55,9 @@ class PokemonListFragment : Fragment() {
                 response: Response<Pokemon>
             ) {
                 val responseBody = response.body()!!
-               binding.listRecycler.adapter = PokemonAdapter(responseBody.results) {clickedItem->
+                val results = responseBody.results
+                setPokemonIds(results)
+               binding.listRecycler.adapter = PokemonAdapter(results) {clickedItem->
                    findNavController().navigate(
                        R.id.action_pokemonListFragment_to_pokemonPage,
                        bundleOf("Pokemon" to clickedItem)
@@ -61,6 +72,10 @@ class PokemonListFragment : Fragment() {
                 Log.d("MainActivity", "onFailure" + t.message)
             }
         })
+
+    }
+    private fun setPokemonIds(list: List<Result>){
+        list.forEachIndexed { index, result -> result.id = index+1 }
     }
 
 

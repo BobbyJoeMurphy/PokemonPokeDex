@@ -1,5 +1,6 @@
 package com.example.mypokemonpokedex.Adapter
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +16,14 @@ import com.example.Data.Result
 import com.example.mypokemonpokedex.R
 
 
-class PokemonAdapter(private val list: List<Result>, val callback: (Result) -> Unit) :
-    RecyclerView.Adapter<PokemonAdapter.MyViewHolder>(),Filterable{
+class PokemonAdapter(private var resultList: List<Result>, val callback: (Result) -> Unit) :
+    RecyclerView.Adapter<PokemonAdapter.MyViewHolder>(),CustomFilterableAdapter<Result>{
 
-    private var allItems= listOf<Result>()
-    
+    private var allItems= arrayListOf<Result>()
+    init {
+        allItems.addAll(resultList)
+    }
+
 
 
 
@@ -30,7 +34,7 @@ class PokemonAdapter(private val list: List<Result>, val callback: (Result) -> U
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = list[position]
+        val currentItem = resultList[position]
         holder.itemView.setOnClickListener {
             callback(currentItem)
             Log.e("TAG",currentItem.name)
@@ -38,14 +42,14 @@ class PokemonAdapter(private val list: List<Result>, val callback: (Result) -> U
 
         holder.textView.text = currentItem.name
         Glide.with(holder.itemView.context)
-            .load(url.plus(position + 1).plus(".png"))
+            .load(url.plus(currentItem.id).plus(".png"))
             .into(holder.imagePokemons)
 
 
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return resultList.size
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -58,8 +62,26 @@ class PokemonAdapter(private val list: List<Result>, val callback: (Result) -> U
         const val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun getFilter(): Filter {
-        TODO("Not yet implemented")
+        return PokemonFilter(this){
+            notifyDataSetChanged()
+        }
+
+
+    }
+
+    override fun getAllItems(): List<Result> {
+        return allItems
+    }
+
+    override fun getCurrentItems(): List<Result> {
+        return resultList
+
+    }
+
+    override fun setCurrentItems(items: List<Result>) {
+        resultList = items
     }
 
 
