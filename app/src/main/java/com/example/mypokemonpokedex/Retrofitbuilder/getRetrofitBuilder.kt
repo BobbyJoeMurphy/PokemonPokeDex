@@ -3,7 +3,7 @@ package com.example.mypokemonpokedex.Retrofitbuilder
 import com.example.mypokemonpokedex.APIinterface.ApiInterface
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-val urlForPokemon = "https://pokeapi.co/api/v2/"
+const val urlForPokemon = "https://pokeapi.co/api/v2/"
 
 fun getRetrofitBuilder(): ApiInterface {
     return Retrofit.Builder()
