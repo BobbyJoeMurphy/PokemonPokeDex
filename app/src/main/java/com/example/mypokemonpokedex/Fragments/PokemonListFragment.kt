@@ -25,8 +25,6 @@ class PokemonListFragment : Fragment() {
     private lateinit var binding: FragmentPokemonListBinding
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,14 +36,14 @@ class PokemonListFragment : Fragment() {
         setupEditText()
         return binding.root
     }
-    private fun setupEditText(){
+
+    private fun setupEditText() {
         binding.editTextSearch.addTextChangedListener {
             (binding.listRecycler.adapter as? PokemonAdapter)?.filter?.filter(it)
 
         }
 
     }
-
 
 
     private fun getPokemonList() {
@@ -58,25 +56,27 @@ class PokemonListFragment : Fragment() {
                 val responseBody = response.body()!!
                 val results = responseBody.results
                 setPokemonIds(results)
-               binding.listRecycler.adapter = PokemonAdapter(results) {clickedItem->
-                   findNavController().navigate(
-                       R.id.action_pokemonListFragment_to_pokemonPage,
-                       bundleOf("Pokemon" to clickedItem)
-               )
+                binding.listRecycler.adapter = PokemonAdapter(results) { clickedItem ->
+                    findNavController().navigate(
+                        R.id.action_pokemonListFragment_to_pokemonPage,
+                        bundleOf("Pokemon" to clickedItem)
+                    )
 
                 }
                 (binding.listRecycler.layoutManager as GridLayoutManager).spanCount = 3
 
 
             }
+
             override fun onFailure(call: Call<Pokemon>, t: Throwable) {
                 Log.d("MainActivity", "onFailure" + t.message)
             }
         })
 
     }
-    private fun setPokemonIds(list: List<Result>){
-        list.forEachIndexed { index, result -> result.id = index+1 }
+
+    private fun setPokemonIds(list: List<Result>) {
+        list.forEachIndexed { index, result -> result.id = index + 1 }
     }
 
 

@@ -10,12 +10,12 @@ class PokemonFilter(
     override fun performFiltering(constraint: CharSequence?): FilterResults {
         val filterResults = FilterResults()
         constraint ?: return filterResults
-        if(constraint.isNotEmpty()){
-            filterResults.values= adapter.getAllItems().filter {
+        if (constraint.isNotEmpty()) {
+            filterResults.values = adapter.getAllItems().filter {
                 it.name.startsWith(constraint)
             }
 
-        }else{
+        } else {
             filterResults.values = adapter.getAllItems()
         }
         return filterResults

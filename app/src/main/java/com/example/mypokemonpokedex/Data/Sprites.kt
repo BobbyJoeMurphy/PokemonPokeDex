@@ -7,4 +7,4 @@ data class Sprites(
     val front_default: String,
     val front_shiny: String
 
-): Serializable
+) : Serializable

@@ -44,9 +44,9 @@ class PokemonPageFragment : Fragment() {
                     .into(binding.imageViewPokemon)
 
                 binding.abilityOne.text = responseBody.abilities[0].ability.name
-                binding.Height.text = responseBody.height.toString()+" :dm"
-                binding.baseExp.text = responseBody.base_experience.toString() +"xp"
-                binding.Weight.text = responseBody.weight.toString()+" :dm"
+                binding.Height.text = responseBody.height.toString() + " :dm"
+                binding.baseExp.text = responseBody.base_experience.toString() + "xp"
+                binding.Weight.text = responseBody.weight.toString() + " :dm"
 
 
 
