@@ -6,6 +6,10 @@ data class PokemonData(
     val id: Int,
     val name :String,
     val sprites: Sprites,
-    val abilities: List<PokemonAbility>
+    val height:Int,
+    val weight : Int,
+    val base_experience : Int,
+    val abilities: List<PokemonAbility>,
+
 
 ): Serializable

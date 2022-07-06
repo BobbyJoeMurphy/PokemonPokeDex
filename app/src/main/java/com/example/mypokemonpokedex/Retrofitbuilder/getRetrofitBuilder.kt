@@ -1,6 +1,6 @@
 package com.example.mypokemonpokedex.Retrofitbuilder
 
-import com.example.mypokemonpokedex.Data.ApiInterface
+import com.example.mypokemonpokedex.APIinterface.ApiInterface
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 val urlForPokemon = "https://pokeapi.co/api/v2/"

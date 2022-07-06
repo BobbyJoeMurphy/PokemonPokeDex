@@ -1,4 +1,4 @@
-package com.example.mypokemonpokedex
+package com.example.mypokemonpokedex.Fragments
 
 import com.example.mypokemonpokedex.Adapter.PokemonAdapter
 import android.os.Bundle
@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.Data.Pokemon
 import com.example.Data.Result
+import com.example.mypokemonpokedex.R
 import com.example.mypokemonpokedex.Retrofitbuilder.getRetrofitBuilder
 import com.example.mypokemonpokedex.databinding.FragmentPokemonListBinding
 import retrofit2.Call

@@ -1,5 +1,4 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            />
+             />
 
     </FrameLayout>
 
@@ -47,10 +46,45 @@
         android:background="@drawable/button"
         android:backgroundTint="@color/white" />
     <FrameLayout
+        android:id="@+id/pokemonAbility"
         android:layout_width="@dimen/image_container"
         android:layout_height="@dimen/image_container"
         android:layout_gravity="center_horizontal"
+        android:padding="10dp"
         android:background="@drawable/box">
+
+        <TextView
+            android:id="@+id/ability_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="test string"
+            android:textSize="20sp"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/Height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="right"
+            android:text="test string"
+            tools:ignore="RtlHardcoded" />
+        <TextView
+            android:id="@+id/base_exp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="bottom"
+            android:text="test string"/>
+        <TextView
+            android:id="@+id/Weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="end|bottom"
+            android:text="test string"/>
+
 
 
     </FrameLayout>

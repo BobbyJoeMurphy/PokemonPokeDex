@@ -1,6 +1,7 @@
-package com.example.mypokemonpokedex.Data
+package com.example.mypokemonpokedex.APIinterface
 
 import com.example.Data.Pokemon
+import com.example.mypokemonpokedex.Data.PokemonData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
