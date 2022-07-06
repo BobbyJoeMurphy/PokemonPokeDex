@@ -19,8 +19,10 @@ import com.example.mypokemonpokedex.databinding.FragmentPokemonListBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
-
+//*****************************************************************************************************
+//A framgent that displays a recycler view, calls a request to the api to get the info from ApiInterface,
+//runs it through an viewmodel adapter, then displays it into a gridlist of 3 coloum size
+//******************************************************************************************************
 class PokemonListFragment : Fragment() {
     private lateinit var binding: FragmentPokemonListBinding
 

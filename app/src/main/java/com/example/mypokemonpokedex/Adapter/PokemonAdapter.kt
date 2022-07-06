@@ -14,6 +14,10 @@ import com.bumptech.glide.Glide
 
 import com.example.Data.Result
 import com.example.mypokemonpokedex.R
+//****************************************************************
+//my adapter that places the calls into a grid list in pokemonlist
+//****************************************************************
+
 
 
 class PokemonAdapter(private var resultList: List<Result>, val callback: (Result) -> Unit) :

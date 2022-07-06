@@ -29,6 +29,10 @@ class PokemonPageFragment : Fragment() {
         binding = FragmentPokemonPageBinding.inflate(inflater, container, false)
         var pokemonResult = arguments?.getSerializable("Pokemon") as Result
 
+
+        //function is inside the body to call the previous result pokemonResult.name,
+        // allowing me to then make another api GET to another part of the pokeapi
+
         val retrofitData = getRetrofitBuilder().getPokemonDetails(pokemonResult.name)
         retrofitData.enqueue(object : Callback<PokemonData> {
             @SuppressLint("SetTextI18n")

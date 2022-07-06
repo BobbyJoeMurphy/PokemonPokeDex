@@ -2,7 +2,9 @@ package com.example.mypokemonpokedex.Adapter
 
 import android.widget.Filter
 import com.example.Data.Result
-
+//*******************************************************************************
+//pokemon filter that allows us to make searches and re apply them to the adapter.
+//********************************************************************************
 class PokemonFilter(
     private val adapter: CustomFilterableAdapter<Result>,
     private val notifyListener: () -> Unit
